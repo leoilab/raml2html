@@ -142,9 +142,13 @@
                     {% if method.body %}
                       <h3>Body</h3>
                       {% for b in method.body %}
-                        {% if b.type %}
-                          <p><strong>Type</strong>:</p>
-                          <pre><code>{{ b.type | escape }}</code></pre>
+                        {% if b.properties.length %}
+                          <p><strong>Properties</strong>:</p>
+                          <ul>
+                          {% for property in b.properties %}
+                            {% include "./property.nunjucks" %}
+                          {% endfor %}
+                          </ul>
                         {% endif %}
 
                         {% if b.formParameters.length %}
@@ -190,11 +194,6 @@
                       {% if response.body.length %}
                         <h3>Body</h3>
                         {% for b in response.body %}
-                          {% if b.type %}
-                            <p><strong>Type</strong>:</p>
-                            <pre><code>{{ b.type | escape }}</code></pre>
-                          {% endif %}
-
                           {% if b.example %}
                             <p><strong>Example</strong>:</p>
                             <pre><code>{{ b.structuredExample.value | escape }}</code></pre>

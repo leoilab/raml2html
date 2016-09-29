@@ -1,0 +1,34 @@
+<li>
+  {% if property.displayName %}
+    <strong>{{ property.displayName }}</strong>:
+  {% else %}
+    <strong>{{ key }}</strong>:
+  {% endif %}
+
+  <em>
+    {%- if property.required -%}required {% endif -%}
+    (
+    {%- if property.enum -%}
+      one of {{ property.enum.join(', ') }}
+    {%- else -%}
+      {{ property.type }}
+    {%- endif -%}
+
+    {%- if property.default or property.default == 0 or property.default == false %} - default: {{ property.default }}{%- endif -%}
+    {%- if property.repeat %} - repeat: {{ property.repeat }}{%- endif -%}
+    {%- if property.type == 'string' -%}
+      {%- if property.minLength or property.minLength == 0 %} - minLength: {{ property.minLength }}{%- endif -%}
+      {%- if property.maxLength or property.maxLength == 0 %} - maxLength: {{ property.maxLength }}{%- endif -%}
+    {%- else -%}
+      {%- if property.minimum or property.minimum == 0 %} - minimum: {{ property.minimum }}{%- endif -%}
+      {%- if property.maximum or property.maximum == 0 %} - maximum: {{ property.maximum }}{%- endif -%}
+    {%- endif -%}
+    {%- if property.pattern %} - pattern: {{ property.pattern }}{%- endif -%}
+    )
+  </em>
+
+{% markdown %}
+{{ property.description }}
+{% endmarkdown %}
+
+</li>
