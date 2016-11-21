@@ -164,6 +164,10 @@
                           <p><strong>Example</strong>:</p>
                           <pre><code>{{ b.structuredExample.value | escape }}</code></pre>
                         {% endif %}
+                        {% for e in b.examples %}
+                          <p><strong>Example</strong>:</p>
+                          <pre><code>{{ e.value | escape }}</code></pre>
+                        {% endfor %}
                       {% endfor %}
                     {% endif %}
                   </div>
@@ -198,6 +202,10 @@
                             <p><strong>Example</strong>:</p>
                             <pre><code>{{ b.structuredExample.value | escape }}</code></pre>
                           {% endif %}
+                          {% for e in b.examples %}
+                            <p><strong>Example</strong>:</p>
+                            <pre><code>{{ e.value | escape }}</code></pre>
+                          {% endfor %}
                         {% endfor %}
                       {% endif %}
                     {% endfor %}
